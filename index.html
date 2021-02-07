@@ -1,0 +1,235 @@
+<!-- 
+note: to test on local
+1. type `python3 -m http.server` or `npx http-server ./ -c-1`
+2. open browser and go to `http://localhost:8000` 
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title> 
+    An Introduction to Deep Learning on Meshes
+  </title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- syntax highlight -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script> -->
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <!-- include three.js from CDN -->
+  <script src="https://threejs.org/build/three.js"></script>
+  <script src='https://threejs.org/examples/js/controls/OrbitControls.js'></script>
+  <script src='https://threejs.org/examples/js/loaders/OBJLoader.js'></script>
+  <script src="meshes/mesh.js"></script>
+
+  <!-- include text icon at fontawesome.com -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+</head>
+<body>
+  <!-- <nav id="navBar">
+    <div class="container">
+      <ul>
+        <li> <a hred="#"> Home </a> </li>
+        <li> <a hred="#"> Course Note </a> </li>
+        <li> <a hred="#"> Code </a> </li>
+        <li> <a hred="#"> Contact </a> </li>
+      </ul>
+    </div>
+  </nav> -->
+
+  <section id="teaser">
+    <div>
+      <h1> 
+        An Introduction to Deep Learning on Meshes
+      </h1>  
+    </div>
+  </section> 
+
+  <div class="wrapper">
+
+  <!-- The sidebar -->
+  <div class="sidebar">
+    <a href="#home">Home</a>
+    <a href="#materials">Course Materials</a>
+    <a href="#datasets">Datesets</a>
+    <a href="#demos">Demos</a>
+  </div>
+
+  <div class="container" id="home">
+    <section id="mainBody">
+      <h1> Course Objective </h1>
+      <p>
+        This course introduces the fundamentals of machine learning techniques on meshes. We start with a short introduction of machine learning on regular structures (e.g., images), and discuss their generalization to the irregular mesh structure. Despite several alternative representations exist (e.g., implicits, voxels, point clouds), we focus our discussion on the techniques directly defined on surface triangle meshes, which is one of the most commonly used representations in graphics over the decades. Specifically, we will cover the building blocks of a mesh convolutional neural network, including convolution, pooling, regularization, and loss functions. We will also cover how to apply convolutional networks to classic geometry processing tasks, such as geometric texture synthesis, shape classification, and subdivision. We propose a mesh MNIST dataset for research prototyping and hand-on demos to these learning tasks.  <br>
+      </p>
+
+      <h1 id="materials"> Course Materials </h1>
+      <p>
+        <a href="pdfs/test.pdf"> <i class="fa fa-file-pdf fa-4x fa-fw"></i> </a>
+        <a href="https://youtu.be/-CnkgGosSLw"> <i class="fab fa-youtube fa-4x fa-fw"></i> </a>
+        <a href="https://github.com/libigl/libigl/"> <i class="fab fa-github fa-4x fa-fw"></i> </a>
+        <!-- <a href="pdfs/test.pdf"><img src="images/pdf_icon.png"></a>
+        <a href="pdfs/test.pdf"><img src="images/pdf_icon.png"></a>
+        <a href="pdfs/test.pdf"><img src="images/pdf_icon.png"></a>
+        Notes
+        Videos
+        Demos -->
+      </p>
+
+      <h1 id="datasets"> Datasets </h1>
+
+      <h1 id="demos"> Demos </h1>
+      <script src="https://gist.github.com/HTDerekLiu/d5cb5ec24f46a1355049d11ad5cdd6fc.js"></script>
+      <figure>
+        <img src="images/example_image.jpg" alt="example image">
+        <figcaption> Fig.1 example image caption example image caption example image caption example image caption example image caption example image caption </figcaption>  
+      </figure>
+
+      <figure>
+        <img src="images/example_gif.gif" alt="example gif">
+        <figcaption> Fig.2 example image caption example image caption example image caption example im<meta name="viewport" content="width=device-width, initial-scale=1.0">age caption example image caption example image caption </figcaption>  
+      </figure>
+
+      <!-- example style text -->
+      <!-- <p>
+        <em> this is an example of "em" </em> <br>
+
+        <strong> this is an example of "strong" </strong><br>
+
+        <code>
+          code block
+        </code>
+        <pre><code class="python">
+import numpy as np
+x = np.array([1,2,3])
+        </code></pre>
+        
+      </p> -->
+      <!-- end example style text -->
+
+      <!-- example list -->
+      <!-- <ul>
+        <li> this is an example list item 1 </li>
+        <li> this is an example list item 2 </li>
+        <li> this is an example list item 3 </li>
+        <li> this is an example list item 4 </li>
+      </ul>  -->
+      <!-- end of example list  -->
+
+      <!-- example embed gist -->
+      <!-- <script src="https://gist.github.com/HTDerekLiu/d5cb5ec24f46a1355049d11ad5cdd6fc.js"></script> -->
+      <!-- end of embed list  -->
+      
+      <!-- example table -->
+      <!-- <table class="center">
+        <thead>
+          <th> table head 1</th>
+          <th> table head 2</th>
+          <th> table head 3</th>
+        </thead>
+        <tbody>
+          <tr> 
+            <td> content 1 </td>
+            <td> content 2 </td>
+            <td> content 3 </td>
+          </tr>
+          <tr> 
+            <td> content 1 </td>
+            <td> content 2 </td>
+            <td> content 3 </td>
+          </tr>
+          <tr> 
+            <td> content 1 </td>
+            <td> content 2 </td>
+            <td> content 3 </td>
+          </tr>
+        </tbody>
+      </table> -->
+      <!-- end of example table -->
+
+      <!-- example image -->
+      <!-- <figure>
+        <img src="images/example_image.jpg" alt="example image">
+        <figcaption> Fig.1 example image caption example image caption example image caption example image caption example image caption example image caption </figcaption>  
+      </figure>
+
+      <figure>
+        <img src="images/example_gif.gif" alt="example gif">
+        <figcaption> Fig.2 example image caption example image caption example image caption example im<meta name="viewport" content="width=device-width, initial-scale=1.0">age caption example image caption example image caption </figcaption>  
+      </figure> -->
+
+      <!-- <h1> Try to visualize meshes </h1>
+      <p>
+        random text random text random text random text random text random text random text random text random text random text random text random text  .. .  random text random text random text random text random text random text random text random text random text random text random text random text
+      </p>
+      <div class="three_container">
+      <div id="mesh1" class="center">
+        <script>render('#mesh1', 'meshes/bunny.obj', THREE.FlatShading);</script>
+      </div>
+      <div id="mesh2" class="center">
+        <script>render('#mesh2', 'meshes/spot.obj', THREE.FlatShading);</script>
+      </div> -->
+      </div>  <!-- end of wrapper -->
+    </section> 
+  </div>
+  </div>
+  
+  <footer id="mainFooter">
+    <p>
+      Copyright &copy;2021 An Introduction to Deep Learning on Meshes
+    </p>
+  </footer>
+</body>
+</html>
+
+    <!-- visualize 3d model -->
+		<!-- <script>
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+      const renderer = new THREE.WebGLRenderer();
+      renderer.setSize( window.innerWidth, window.innerHeight );
+      document.body.appendChild( renderer.domElement );
+
+      const loader = new THREE.OBJLoader();
+      loader.load(
+        // resource URL
+        "/meshes/spot.obj",
+
+        // Here the loaded data is assumed to be an object
+        function ( obj ) {
+          scene.add( obj );
+        },
+
+        // onProgress callback
+        function ( xhr ) {
+          console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+        },
+
+        // onError callback
+        function ( err ) {
+          console.error( 'An error happened' );
+        }
+      );
+
+      // const geometry = new THREE.BoxGeometry();
+      // const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+      // const cube = new THREE.Mesh( geometry, material );
+      // scene.add( cube );
+
+      camera.position.z = 5;
+
+      const animate = function () {
+				requestAnimationFrame( animate );
+
+				// cube.rotation.x += 0.01;
+				// cube.rotation.y += 0.01;
+
+				renderer.render( scene, camera );
+			};
+
+			animate();
+    </script> -->

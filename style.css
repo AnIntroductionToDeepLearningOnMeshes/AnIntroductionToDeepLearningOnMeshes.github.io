@@ -1,0 +1,231 @@
+img, figcaption {
+  max-width: 250px;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+figcaption {
+  padding: 2px;
+  /* text-align: center; */
+}
+
+body{
+  background-color: #fff;
+  color: rgb(50,50,50);
+  font-family: "LB";
+  font-size: 16px;
+  line-height:1.5em;
+  margin: 0;
+}
+
+p code{
+  background-color: #eee;
+  color: #333;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 20px;
+}
+
+p {
+  margin-bottom: 50px;
+}
+
+.container{
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+}
+
+.three_container{
+  width: 70%;
+  margin: auto;
+  overflow: hidden;
+}
+
+.center{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* #navBar{
+  background-color: #333;
+  color: #fff;
+}
+
+#navBar ul{
+  padding: 0;
+  list-style: none;
+}
+
+#navBar li{
+  display: inline;
+}
+
+#navBar a{
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  padding-right: 15px;
+} */
+
+#teaser{
+  background-image:url('images/teaser.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 150px;
+  text-align:center; 
+  overflow: hidden;
+}
+
+#teaser h1{
+  color: #fff;
+  font-size: 50px;
+  line-height: 1.2em;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+#mainFooter{
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  margin-top: 40px;
+}
+
+#mainBody{
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+
+/* pre define font */
+@font-face {
+  font-family: 'LL'; /* normal */
+  src: url('./fonts/LinLibertine_R.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'LL'; /* italic */
+  src: url('./fonts/LinLibertine_RI.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'LL'; /* bold */
+  src: url('./fonts/LinLibertine_RB.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'LB'; /* normal */
+  src: url('./fonts/LinBiolinum_R.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'LB'; /* italic */
+  src: url('./fonts/LinBiolinum_RI.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'LB'; /* bold */
+  src: url('./fonts/LinBiolinum_RB.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+
+/* The side navigation menu */
+.sidebar {
+  /* margin: 0; */
+  /* padding: 0; */
+  margin-top: 10px;
+  width: 100px;
+  background-color: #ffffff;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  height: 100%;
+  overflow: auto;
+}
+
+/* Sidebar links */
+.sidebar a {
+  display: block;
+  color: rgb(50,50,50);
+  /* color: black; */
+  padding-top: 6px;
+  padding-right: 6px;
+  padding-bottom: 6px;
+  padding-left: 20px;
+  text-decoration: none;
+}
+
+/* Active/current link */
+.sidebar a.active {
+  /* background-color: #333; */
+  /* color: rgb(0,0,128); */
+  text-decoration: underline;
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  /* background-color: #A9A9A9; */
+  /* color: white; */
+  text-decoration: underline;
+}
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+div.content {
+  margin-left: 100px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+/* make sidebar have the same hight as main content */
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+
+  .wrapper {
+    display: inline;
+    justify-content: space-between;
+  }
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+
+}
+
+/* awesome icon style */
+a .fa {
+  color:rgb(50,50,50);
+}
+a .fab {
+  color:rgb(50,50,50);
+}
+a:hover, a:focus, a:active, a:visited, a:link{
+  text-decoration: none;
+}
