@@ -1,5 +1,5 @@
 function render(id, objpath, shade) {
-    const myFov = 90;
+    const myFov = 45;
     const viewWidth = 100;
     const viewHeight = 50;
     const heightRatio = 4.0;

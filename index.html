@@ -71,18 +71,35 @@ note: to test on local
         <a href="pdfs/test.pdf"> <i class="fa fa-file-pdf fa-4x fa-fw"></i> </a>
         <a href="https://youtu.be/-CnkgGosSLw"> <i class="fab fa-youtube fa-4x fa-fw"></i> </a>
         <a href="https://github.com/libigl/libigl/"> <i class="fab fa-github fa-4x fa-fw"></i> </a>
-        <!-- <a href="pdfs/test.pdf"><img src="images/pdf_icon.png"></a>
-        <a href="pdfs/test.pdf"><img src="images/pdf_icon.png"></a>
-        <a href="pdfs/test.pdf"><img src="images/pdf_icon.png"></a>
-        Notes
-        Videos
-        Demos -->
       </p>
 
+      <!-- for it to work locally, we have to do
+      /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --allow-file-access-from-files -->
       <h1 id="datasets"> Datasets </h1>
+      (TODO: add description about the dataset)
+      <div id="mesh1" class="center">
+        <script>render('#mesh1', 'meshes/data.obj', THREE.FlatShading);</script>
+      </div>
 
       <h1 id="demos"> Demos </h1>
-      <script src="https://gist.github.com/HTDerekLiu/d5cb5ec24f46a1355049d11ad5cdd6fc.js"></script>
+      We introduce a series of self-contained examples based on an open source library <a href="https://pytorch.org">PyTorch</a>. The purpose of these examples is to demonstrate how to implement a machine learning model on meshes. <br><br>
+
+      In this example, we will present a basic example on using machine learning to classify shapes. First, let's start by loading the library and the our mesh MNIST dataset<br><br>
+      <script src="https://gist.github.com/HTDerekLiu/60a323f8e233c2af84dccceff7ee0810.js"></script>
+
+      Next, let's define a simple mesh convolutional network without mesh pooling. The network takes a triangle mesh as input, perform a series of mesh convolutions, follow by a global feature pooling, and make classifications based on the feature<br><br>
+      <script src="https://gist.github.com/HTDerekLiu/21c51593f0519304eb6ef26662fac69d.js"></script>
+
+      To train the network, we use a Cross-Entropy loss and a stochastic gradient descent optimizer<br><br>
+      <script src="https://gist.github.com/HTDerekLiu/a8465906bb4f48107ccbc64c86456900.js"></script>
+
+      Then we can simply train the network to minimize the loss function as<br><br>
+      <script src="https://gist.github.com/HTDerekLiu/d3c3b5c5ad540996ae067bbf9d3be41b.js"></script>
+
+      After the training is complete, we can easily use our network to classify unseen data as<br><br>
+      <script src="https://gist.github.com/HTDerekLiu/7f091f55ba9d77ccf2ae6251d0568697.js"></script>
+
+      <!-- <script src="https://gist.github.com/HTDerekLiu/d5cb5ec24f46a1355049d11ad5cdd6fc.js"></script>
       <figure>
         <img src="images/example_image.jpg" alt="example image">
         <figcaption> Fig.1 example image caption example image caption example image caption example image caption example image caption example image caption </figcaption>  
@@ -91,7 +108,69 @@ note: to test on local
       <figure>
         <img src="images/example_gif.gif" alt="example gif">
         <figcaption> Fig.2 example image caption example image caption example image caption example im<meta name="viewport" content="width=device-width, initial-scale=1.0">age caption example image caption example image caption </figcaption>  
-      </figure>
+      </figure> -->
+      </div>  <!-- end of wrapper -->
+    </section> 
+  </div>
+  </div>
+  
+  <footer id="mainFooter">
+    <p>
+      Copyright &copy;2021 An Introduction to Deep Learning on Meshes
+    </p>
+  </footer>
+</body>
+</html>
+
+    <!-- visualize 3d model -->
+		<!-- <script>
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+      const renderer = new THREE.WebGLRenderer();
+      renderer.setSize( window.innerWidth, window.innerHeight );
+      document.body.appendChild( renderer.domElement );
+
+      const loader = new THREE.OBJLoader();
+      loader.load(
+        // resource URL
+        "/meshes/spot.obj",
+
+        // Here the loaded data is assumed to be an object
+        function ( obj ) {
+          scene.add( obj );
+        },
+
+        // onProgress callback
+        function ( xhr ) {
+          console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+        },
+
+        // onError callback
+        function ( err ) {
+          console.error( 'An error happened' );
+        }
+      );
+
+      // const geometry = new THREE.BoxGeometry();
+      // const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+      // const cube = new THREE.Mesh( geometry, material );
+      // scene.add( cube );
+
+      camera.position.z = 5;
+
+      const animate = function () {
+				requestAnimationFrame( animate );
+
+				// cube.rotation.x += 0.01;
+				// cube.rotation.y += 0.01;
+
+				renderer.render( scene, camera );
+			};
+
+			animate();
+    </script> -->
+
 
       <!-- example style text -->
       <!-- <p>
@@ -172,64 +251,3 @@ x = np.array([1,2,3])
       <div id="mesh2" class="center">
         <script>render('#mesh2', 'meshes/spot.obj', THREE.FlatShading);</script>
       </div> -->
-      </div>  <!-- end of wrapper -->
-    </section> 
-  </div>
-  </div>
-  
-  <footer id="mainFooter">
-    <p>
-      Copyright &copy;2021 An Introduction to Deep Learning on Meshes
-    </p>
-  </footer>
-</body>
-</html>
-
-    <!-- visualize 3d model -->
-		<!-- <script>
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-
-      const renderer = new THREE.WebGLRenderer();
-      renderer.setSize( window.innerWidth, window.innerHeight );
-      document.body.appendChild( renderer.domElement );
-
-      const loader = new THREE.OBJLoader();
-      loader.load(
-        // resource URL
-        "/meshes/spot.obj",
-
-        // Here the loaded data is assumed to be an object
-        function ( obj ) {
-          scene.add( obj );
-        },
-
-        // onProgress callback
-        function ( xhr ) {
-          console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
-        },
-
-        // onError callback
-        function ( err ) {
-          console.error( 'An error happened' );
-        }
-      );
-
-      // const geometry = new THREE.BoxGeometry();
-      // const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-      // const cube = new THREE.Mesh( geometry, material );
-      // scene.add( cube );
-
-      camera.position.z = 5;
-
-      const animate = function () {
-				requestAnimationFrame( animate );
-
-				// cube.rotation.x += 0.01;
-				// cube.rotation.y += 0.01;
-
-				renderer.render( scene, camera );
-			};
-
-			animate();
-    </script> -->

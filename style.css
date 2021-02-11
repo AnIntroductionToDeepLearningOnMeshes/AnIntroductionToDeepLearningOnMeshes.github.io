@@ -82,7 +82,7 @@ p {
 }
 
 #teaser h1{
-  color: #fff;
+  color: rgb(0, 0, 0);
   font-size: 50px;
   line-height: 1.2em;
   padding-top: 30px;
@@ -211,13 +211,12 @@ div.content {
 }
 
 /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
-@media screen and (max-width: 400px) {
+/* @media screen and (max-width: 400px) {
   .sidebar a {
     text-align: center;
     float: none;
   }
-
-}
+} */
 
 /* awesome icon style */
 a .fa {
