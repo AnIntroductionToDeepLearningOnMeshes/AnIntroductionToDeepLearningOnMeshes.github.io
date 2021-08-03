@@ -55,16 +55,16 @@ note: to test on local
   <div class="sidebar">
     <a href="#home">Home</a>
     <a href="#materials">Course Materials</a>
-    <a href="#datasets">Datasets</a>
+    <a href="#datasets">Dateset</a>
     <a href="#demos">Demos</a>
-    <a href="#contacts">Contact</a>
+    <a href="#contacts">Contacts</a>
   </div>
 
   <div class="container" id="home">
     <section id="mainBody">
       <h1> Course Objective </h1>
       <p>
-        This course introduces the fundamentals of machine learning techniques on meshes. We start with a short introduction of machine learning on regular structures (e.g., images), and discuss their generalization to the irregular mesh structure. Despite several alternative representations exist (e.g., implicits, voxels, point clouds), we focus our discussion on the techniques directly defined on surface triangle meshes, which is one of the most commonly used representations in graphics over the decades. Specifically, we will cover the building blocks of a mesh convolutional neural network, including convolution, pooling, regularization, and loss functions. We will also cover how to apply convolutional networks to classic geometry processing tasks, such as geometric texture synthesis, shape classification, and subdivision. We propose a mesh MNIST dataset for research prototyping and hand-on demos to these learning tasks.  <br>
+        This course introduces the fundamentals of machine learning techniques on meshes. We start with a short introduction of machine learning on regular structures (e.g., images), and discuss their generalization to the irregular mesh structure. Despite several alternative representations exist (e.g., implicits, voxels, point clouds), we focus our discussion on the techniques directly defined on surface triangle meshes, which is one of the most commonly used representations in graphics over the decades. Specifically, we will cover the building blocks of a mesh convolutional neural network, including convolution, pooling, regularization, and loss functions. We will also cover how to apply convolutional networks to classic geometry processing tasks, such as geometric texture synthesis, shape classification, and subdivision. We propose a mesh MNIST dataset for research prototyping and hand-on demos to these learning tasks.<br>
       </p>
 
       <h1 id="materials"> Course Materials </h1>
@@ -77,15 +77,72 @@ note: to test on local
       <!-- for it to work locally, we have to do
       /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --allow-file-access-from-files -->
       <h1 id="datasets"> Datasets </h1>
-      The <a href="http://yann.lecun.com/exdb/mnist/">MNIST</a> dataset contains thousands of handwritten digits. This is commonly used as the <em>Hello World</em> for deep learning on images. We create an analogous 3D mesh MNIST dataset for 3D deep learning (link will be provided upon acceptance).
+      The <a href="http://yann.lecun.com/exdb/mnist/">MNIST</a> dataset contains thousands of handwritten digits. This is commonly used as the <em>Hello World</em> for deep learning on images. We create an analogous 3D mesh MNIST dataset for 3D deep learning in <a href="https://drive.google.com/drive/folders/1CYVoGOiY2rVSzlF5sDpuAgmbwKBYuEgu?usp=sharing">Link</a>.
       <div id="mesh1" class="center">
         <script>render('#mesh1', 'meshes/data.obj', THREE.FlatShading);</script>
       </div>
 
-      <h1 id="demos"> Demos </h1>
-      We introduce a series of self-contained examples based on an open source library <a href="https://pytorch.org">PyTorch</a>. The purpose of these examples is to demonstrate how to implement a machine learning model on meshes. <br><br>
 
-      In this example, we will present a basic example on using machine learning to classify shapes. First, let's start by loading the library and the our mesh MNIST dataset<br><br>
+      <h1 id="demos"> Demos </h1>
+      We introduce a series of self-contained examples based on open source libraries such as <a href="https://github.com/google/jax">JAX</a> and <a href="https://pytorch.org">PyTorch</a>. The purpose of these examples is to demonstrate how to implement a simple machine learning model on meshes. <br>
+
+      <h3> 1. Simple mesh CNN without pooling </h3>
+
+      We present a basic example on using mesh CNN to classify meshes of "1" and meshes of "2" from our <a href="https://drive.google.com/drive/folders/1CYVoGOiY2rVSzlF5sDpuAgmbwKBYuEgu?usp=sharing">meshMNIST</a> dataset. We will cover the full pipeline of loading a shape, computing input features, define a mesh CNN, and the network training. We recommend readers to use well-optimized functions for e.g. <a href="https://pytorch.org/tutorials/beginner/basics/data_tutorial.html">loading training data</a> or <a href="https://jax.readthedocs.io/en/latest/jax.experimental.stax.html">network components</a>. But for clarity purposes, we implement an as-simple-as-possible mesh CNN from scratch using JAX without those utility functions. <br><br>
+      
+      Let's get started by import the basic libraries that we will need in this tutorial <br> 
+      <script src="https://gist.github.com/HTDerekLiu/27bed2edec04f617d817bbaf55684d12.js"></script>
+      
+      We represent each shape as a surface triangle mesh and store as a <em>triangle soup</em>. Specifically, the mesh is represented by two matrices: 
+      <ul>
+        <li>a #vertices by 3 matrix of vertex positions <code>V</code>.</li>
+        <li>a #faces by 3 matrix of triangle indices <code>F</code> into the vertex list <code>V</code>.</li>
+      </ul>
+      We then pre-compute the information that are needed for the training process. This includes 
+      <ul>
+        <li>a #edges by 2 matrix of (undirected) edge indices <code>E</code>.</li>
+        <li>a #edges by 4 matrix of flap edge indices <code>flap</code> (4 boundary edges of each two adjacent triangles) into the edge list <code>E</code>.</li>
+        <li>a #edges by n matrix of input features <code>fE</code> where n is the featrue dimension.</li>
+      </ul>
+
+      <script src="https://gist.github.com/HTDerekLiu/39987bfa39eb99e476386aee8ea061c2.js"></script>
+
+      This <code>compute_input</code> computes the input feature for each edge. Which input feature to compute is a choice to make, here we simply compute the dihedral angle and the 4 edge length ratios for simplicity
+
+      <script src="https://gist.github.com/HTDerekLiu/d48402a1d85eff0e7f4fb6317f5ff89f.js"></script>
+
+      Since this pre-processing usually takes a while, we often process the entire dataset once and save the information 
+      <script src="https://gist.github.com/HTDerekLiu/9bccae39805639b009d463fe6752da5c.js"></script>
+
+      After processing the meshes, we can now define the mesh CNN. Similar to a lot of mesh CNNs (e.g., <a href="https://ranahanocka.github.io/MeshCNN/">MeshCNN</a>), our architecture consists of a bunch of convolution layers, followed by a global pooling and a fully connected layers. For simplicity, we omit the mesh pooling processing in this toy example. <br> <br> 
+
+      In each mesh convolution, the input is a n dimensional function defined on each edge <code>fE</code> in our case. For other applications, this could be a function defined on each face/vertex. No matter "where" we store the input function, the first step in mesh convolution is to re-index this function into a format for fast convolutions. In this example, we will re-index the #edges by n edge functions <code>fE</code> into flap functions <code>fP</code> following the formula in <a href="https://ranahanocka.github.io/MeshCNN/">MeshCNN</a> Equation 2 as
+      <script src="https://gist.github.com/HTDerekLiu/a8c9c659675d7032049e63aced798442.js"></script>
+      Each flap function is a n by 5 matrix, thus <code>fP</code> is a #edges by n by 5 3D matrix.
+
+      After that, mesh convolution can be performed easily with 2D convolution, where each convolution filter has size n by 5 and it outputs a scalar value. We implement it from scratch for clarity, but one should switch to a more well-optimized implementation for performance reasons
+      <script src="https://gist.github.com/HTDerekLiu/b40e50b8f8de3ee731d18f2dded56e06.js"></script>
+
+      With the structure of mesh convolution in mind, we can now initialize the network parameters and define the forward pass (convolutions, global pooling, fully connected multilayer perceptron) as
+      <script src="https://gist.github.com/HTDerekLiu/97ba563fd50bcc7da9716a998d04a7d9.js"></script>
+
+      The rest of the pipeline is the same as e.g. image based classification networks. We need to define the loss function, optimizer, parameter update functions 
+      <script src="https://gist.github.com/HTDerekLiu/cbf08cbdf6bd50569489776e4f5be332.js"></script>
+
+      Then start the network training 
+      <script src="https://gist.github.com/HTDerekLiu/3c694a7bd98b4228c725063e6901e376.js"></script>
+      This training code takes one shape at a time and use stochastic gradient descent to optimize the network. One could also accumulate the gradient from a batch of shapes before taking a gradient step. Ideally, one should also use the <a href="https://pytorch.org/tutorials/beginner/basics/data_tutorial.html">dataloader</a> so that loading the data won't be the bottleneck of training. One could also use a validation set to early stop the training to avoid overfitting.
+      
+
+
+
+
+
+      
+      
+      
+      
+      <!-- First, let's start by loading the library and the our mesh MNIST dataset<br><br>
       <script src="https://gist.github.com/HTDerekLiu/60a323f8e233c2af84dccceff7ee0810.js"></script>
 
       Next, let's define a simple mesh convolutional network without mesh pooling. The network takes a triangle mesh as input, perform a series of mesh convolutions, follow by a global feature pooling, and make classifications based on the feature<br><br>
@@ -98,7 +155,7 @@ note: to test on local
       <script src="https://gist.github.com/HTDerekLiu/d3c3b5c5ad540996ae067bbf9d3be41b.js"></script>
 
       After the training is complete, we can easily use our network to classify unseen data as<br><br>
-      <script src="https://gist.github.com/HTDerekLiu/7f091f55ba9d77ccf2ae6251d0568697.js"></script>
+      <script src="https://gist.github.com/HTDerekLiu/7f091f55ba9d77ccf2ae6251d0568697.js"></script> -->
 
       <!-- <script src="https://gist.github.com/HTDerekLiu/d5cb5ec24f46a1355049d11ad5cdd6fc.js"></script>
       <figure>
@@ -111,7 +168,7 @@ note: to test on local
         <figcaption> Fig.2 example image caption example image caption example image caption example im<meta name="viewport" content="width=device-width, initial-scale=1.0">age caption example image caption example image caption </figcaption>  
       </figure> -->
 
-      <h1 id="contacts"> Contact </h1>
+      <h1 id="contacts"> Contacts </h1>
       This course of deep learning on meshes is developed by <a href="https://www.cs.tau.ac.il/~hanocka/">Rana Hanocka</a> and <a href="https://www.dgp.toronto.edu/~hsuehtil/">Hsueh-Ti Derek Liu</a>. If any questions or suggestions, please <a href="mailto:hsuehtil@cs.toronto.edu,rana@hanocka.com">contact us</a>.
 
       </div>  <!-- end of wrapper (main body above) -->
