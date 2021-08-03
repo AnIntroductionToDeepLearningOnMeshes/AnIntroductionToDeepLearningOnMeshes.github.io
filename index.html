@@ -72,7 +72,8 @@ note: to test on local
         <!-- <a href="pdfs/test.pdf"> <i class="fa fa-file-pdf fa-4x fa-fw"></i> </a>
         <a href="https://youtu.be/-CnkgGosSLw"> <i class="fab fa-youtube fa-4x fa-fw"></i> </a>
         <a href="https://github.com/libigl/libigl/"> <i class="fab fa-github fa-4x fa-fw"></i> </a> -->
-        <a href="pdfs/test.pdf"> <i class="fa fa-file-pdf fa-4x fa-fw"></i> </a>
+        <i class="fa fa-file-pdf fa-4x fa-fw"></i> 
+        <a href="https://github.com/AnIntroductionToDeepLearningOnMeshes/tutorials"> <i class="fab fa-github fa-4x fa-fw"></i> </a>
       </p>
 
       <!-- for it to work locally, we have to do
@@ -132,7 +133,7 @@ note: to test on local
 
       Then start the network training 
       <script src="https://gist.github.com/HTDerekLiu/3c694a7bd98b4228c725063e6901e376.js"></script>
-      This training code takes one shape at a time and use stochastic gradient descent to optimize the network. One could also accumulate the gradient from a batch of shapes before taking a gradient step. Ideally, one should also use the <a href="https://pytorch.org/tutorials/beginner/basics/data_tutorial.html">dataloader</a> so that loading the data won't be the bottleneck of training. One could also use a validation set to early stop the training to avoid overfitting.
+      The complete version of this tutorial can be found <a href="https://github.com/AnIntroductionToDeepLearningOnMeshes/tutorials/blob/main/01_simpleMeshCNN/main.py">here</a>. This training code takes one shape at a time and use stochastic gradient descent to optimize the network. One could also accumulate the gradient from a batch of shapes before taking a gradient step. Ideally, one should also use the <a href="https://pytorch.org/tutorials/beginner/basics/data_tutorial.html">dataloader</a> so that loading the data won't be the bottleneck of training. One could also use a validation set to early stop the training to avoid overfitting.
 
 
 
