@@ -64,7 +64,10 @@ note: to test on local
     <section id="mainBody">
       <h1> Course Objective </h1>
       <p>
-        This course introduces the fundamentals of machine learning techniques on meshes. We start with a short introduction of machine learning on regular structures (e.g., images), and discuss their generalization to the irregular mesh structure. Despite several alternative representations exist (e.g., implicits, voxels, point clouds), we focus our discussion on the techniques directly defined on surface triangle meshes, which is one of the most commonly used representations in graphics over the decades. Specifically, we will cover the building blocks of a mesh convolutional neural network, including convolution, pooling, regularization, and loss functions. We will also cover how to apply convolutional networks to classic geometry processing tasks, such as geometric texture synthesis, shape classification, and subdivision. We propose a mesh MNIST dataset for research prototyping and hand-on demos to these learning tasks.<br>
+        This course introduces the fundamentals of machine learning techniques on meshes. We start with a short introduction of machine learning on regular structures (e.g., images), and discuss their generalization to the irregular mesh structure. Despite several alternative representations exist (e.g., implicits, voxels, point clouds), we focus our discussion on the techniques directly defined on surface triangle meshes, which is one of the most commonly used representations in graphics over the decades. Specifically, we will cover the building blocks of a mesh convolutional neural network, including convolution, pooling, regularization, and loss functions. We will also cover how to apply convolutional networks to classic geometry processing tasks, such as geometric texture synthesis, shape classification, and subdivision. We propose a mesh MNIST dataset for research prototyping and hand-on demos to these learning tasks.<br><br>
+        
+        The course materials are still under active development. If you have any comments or are intersted in contributing, please <a href="#contacts">contact us</a>.
+        <br>
       </p>
 
       <h1 id="materials"> Course Materials </h1>
@@ -72,7 +75,7 @@ note: to test on local
         <!-- <a href="pdfs/test.pdf"> <i class="fa fa-file-pdf fa-4x fa-fw"></i> </a>
         <a href="https://youtu.be/-CnkgGosSLw"> <i class="fab fa-youtube fa-4x fa-fw"></i> </a>
         <a href="https://github.com/libigl/libigl/"> <i class="fab fa-github fa-4x fa-fw"></i> </a> -->
-        <i class="fa fa-file-pdf fa-4x fa-fw"></i> 
+        <a href="./pdfs/SIGA_course_slides.pdf"> <i class="fa fa-file-pdf fa-4x fa-fw"></i> </a>
         <a href="https://github.com/AnIntroductionToDeepLearningOnMeshes/tutorials"> <i class="fab fa-github fa-4x fa-fw"></i> </a>
       </p>
 
@@ -135,7 +138,8 @@ note: to test on local
       <script src="https://gist.github.com/HTDerekLiu/3c694a7bd98b4228c725063e6901e376.js"></script>
       The complete version of this tutorial can be found <a href="https://github.com/AnIntroductionToDeepLearningOnMeshes/tutorials/blob/main/01_simpleMeshCNN/main.py">here</a>. This training code takes one shape at a time and use stochastic gradient descent to optimize the network. One could also accumulate the gradient from a batch of shapes before taking a gradient step. Ideally, one should also use the <a href="https://pytorch.org/tutorials/beginner/basics/data_tutorial.html">dataloader</a> so that loading the data won't be the bottleneck of training. One could also use a validation set to early stop the training to avoid overfitting.
 
-
+      After training one can then use the learned parameter to make predictions
+      <script src="https://gist.github.com/HTDerekLiu/41f6b704524ba973be44c6be145568f7.js"></script>
 
 
 
